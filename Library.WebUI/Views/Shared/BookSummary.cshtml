@@ -1,0 +1,14 @@
+﻿@model LIbrary.Data.Entities.Book
+
+<div class="item">
+    <h3>@Model.Title</h3>
+    @Model.Description
+    <div>@Model.Author</div>
+    @using ( Html.BeginForm( "AddToCard", "Card" ) )
+    {
+        @Html.HiddenFor(x=>x.BookID)
+        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+        <input type="submit" value="+Take a book"/>
+    }
+    
+</div>

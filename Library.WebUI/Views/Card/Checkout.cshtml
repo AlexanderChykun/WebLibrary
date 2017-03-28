@@ -1,0 +1,19 @@
+﻿@model LIbrary.Data.Entities.User
+
+@{
+    ViewBag.Title = "Library: Checkout";
+}
+
+<h2>Check out</h2>
+Please enter your name and a-mail, and we'll send your books right now!
+@using ( Html.BeginForm () )
+{
+    @Html.ValidationSummary()
+    <h3>Send to</h3>
+    <div>Name: @Html.EditorFor(x=>x.Name)</div>
+    <h3>E-mail addres</h3>
+    <div>E-mail: @Html.EditorFor( x => x.Mail )</div>
+    <p align="center">
+        <input class="actionButtons" type="submit" value="Complete"/>
+    </p>
+}

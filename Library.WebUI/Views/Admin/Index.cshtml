@@ -1,0 +1,34 @@
+﻿@model IEnumerable<LIbrary.Data.Entities.Book>
+
+@{
+    ViewBag.Title = "Admin: All books";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<h1>All Books</h1>
+
+<table class="Grid">
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Actions</th>
+    </tr>
+    @foreach ( var item in Model )
+    {
+        <tr>
+            <td>@item.BookID</td>
+            <td>@Html.ActionLink(item.Title, "Edit", new { item.BookID } )</td>
+            <td>
+                @using ( Html.BeginForm( "Delete", "Admin" ) )
+                {
+                    @Html.Hidden( "BookID", item.BookID )
+                    <input type="submit" value="Delete" />
+                }
+            </td>
+        </tr>
+    }
+</table>
+<p>@Html.ActionLink( "Add a new book", "Create" )</p>
+<p>@Html.ActionLink( "Show history", "History" )</p>
+<p>@Html.ActionLink( "Show all users", "GetUsers" )</p>
+

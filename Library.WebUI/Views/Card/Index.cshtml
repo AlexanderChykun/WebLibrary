@@ -1,0 +1,46 @@
+﻿@model Library.WebUI.Models.CardIndexViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Your cart</h2>
+<table width="90%" align="center">
+    <thead>
+        <tr>
+            <th align="center">Quantity</th>
+            <th align="left">Item</th>
+            <th align="right">Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ( var line in Model.Card.Lines )
+        {
+            <tr>
+                <td align="center">@line.Quantity</td>
+                <td align="left">@line.Book.Title</td>
+                <td align="right">@((line.Quantity))</td>
+                <td>
+                    @using ( Html.BeginForm("RemoveFromCard", "Card" ) )
+                    {
+                        @Html.Hidden("BookId", line.Book.BookID)
+                        @Html.HiddenFor(x=>x.ReturnUrl)
+                        <input class="actionButtons" type="submit" value="Remove"/>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" align="right">Total:</td>
+            <td align="right">
+                @Model.Card.ComputeTotalStore()
+            </td>
+        </tr>
+    </tfoot>
+</table>
+<p align="center" class="actionButtons">
+    <a href="@Model.ReturnUrl">Continue taking</a>
+    @Html.ActionLink("Checkout now", "Checkout")
+</p>

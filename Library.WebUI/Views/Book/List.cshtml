@@ -1,0 +1,14 @@
+﻿@model Library.WebUI.Models.BooksListViewModel
+
+@{
+    ViewBag.Title = "Books";
+}
+
+
+@foreach ( var b in Model.Books )
+{
+    Html.RenderPartial( "BookSummary", b );
+}
+<div class="pager">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action( "List", new {page = x, author = Model.CurrentAuthor } ) )
+</div>

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<LIbrary.Data.Entities.User>
+
+@{
+    ViewBag.Title = "GetUsers";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<h2>Users of library</h2>
+
+<table class="Grid">
+    <tr>
+        <th>User name</th>
+        <th>User e-mail</th>
+    </tr>
+    @foreach ( var item in Model )
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Mail</td>
+        </tr>
+    }
+</table>
+@Html.ActionLink( "Return to List", "Index" )

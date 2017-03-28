@@ -1,0 +1,9 @@
+﻿@model LIbrary.Data.Entities.Card
+<div id="card">
+    <span class="caption">
+        <b>Your card:</b>
+        @Model.Lines.Sum(x=>x.Quantity) item(s),
+        @Model.ComputeTotalStore()
+    </span>
+    @Html.ActionLink( "Checkout", "Index", "Card", new {returnUrl = Request.Url.PathAndQuery }, null )
+</div>
